@@ -5,7 +5,7 @@ import { FUNNEL_STAGES } from "@/data/content";
 import { Target, Activity, MousePointer, ShieldCheck, ChevronRight, Zap } from "lucide-react";
 
 function formatNumber(num: number): string {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return new Intl.NumberFormat("en-IN").format(num);
 }
 
 export function MetaAdsSection() {
@@ -22,9 +22,9 @@ export function MetaAdsSection() {
 
   // Target metrics map
   const targetMetrics = {
-    "7D": { reach: 482100, ctr: "4.82%", leads: 318, cpl: "$14.20", conversions: 89, roas: 5.4, spend: "$4,515" },
-    "30D": { reach: 1894500, ctr: "5.16%", leads: 1248, cpl: "$13.80", conversions: 342, roas: 5.8, spend: "$17,222" },
-    "LIFETIME": { reach: 6410000, ctr: "5.40%", leads: 4620, cpl: "$12.90", conversions: 1290, roas: 6.1, spend: "$59,598" },
+    "7D": { reach: 482100, ctr: "4.82%", leads: 318, cpl: "₹285", conversions: 89, roas: 5.4, spend: "₹90,500" },
+    "30D": { reach: 1894500, ctr: "5.16%", leads: 1248, cpl: "₹275", conversions: 342, roas: 5.8, spend: "₹3,43,200" },
+    "LIFETIME": { reach: 6410000, ctr: "5.40%", leads: 4620, cpl: "₹260", conversions: 1290, roas: 6.1, spend: "₹12,01,200" },
   };
 
   const currentMetrics = targetMetrics[timeframe];

@@ -230,7 +230,7 @@ export const ALL_SERVICES: ServiceItem[] = [
     title: "Marketing Strategy",
     category: "GROW",
     shortDescription: "The master blueprint: positioning, messaging, funnel mechanics, and unit economics.",
-    longDescription: "Before spending a dollar on media, we architect your commercial moat: who we are targeting, why they must buy from you now, and what offer structure converts them effortlessly.",
+    longDescription: "Before spending a single rupee on media, we architect your commercial moat: who we are targeting, why they must buy from you now, and what offer structure converts them effortlessly.",
     deliverables: ["Competitive Landscape Audit", "Customer Avatar Synthesis", "Offer Engineering & Pricing", "Go-To-Market Timeline", "Growth Milestone Forecasts"],
     metricsHighlight: "Clear 90-day actionable roadmap",
     iconName: "Compass"
@@ -629,9 +629,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     strategy: "Shifted focus from generic listing features to an emotional cinematic lifestyle campaign targeting verified high-net-worth investors across key financial hubs.",
     creative: "Produced 4 cinematic 4K video ads featuring architectural details, private marina access, and sunset views, paired with aspirational editorial typography.",
     campaign: "Multi-tiered Meta and Google Ads campaign featuring private VIP viewing invites and an interactive 3-step qualifying quiz filtering by liquid budget.",
-    result: "Achieved a 4.6x increase in qualified lead volume while cutting cost-per-qualified-inquiry by 51%, culminating in $18M in contracted sales within 60 days.",
+    result: "Achieved a 4.6x increase in qualified lead volume while cutting cost-per-qualified-inquiry by 51%, culminating in ₹150+ Cr in contracted sales within 60 days.",
     stats: [
-      { label: "Contracted Volume", value: "$18.2M" },
+      { label: "Contracted Volume", value: "₹152 Cr" },
       { label: "Qualified Inquiries", value: "240+" },
       { label: "Cost Per Lead Reduction", value: "-51%" }
     ],
@@ -663,10 +663,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     strategy: "Combined high-intent Google Search interception with educational video case studies and a custom CRM lead routing architecture.",
     creative: "Executive explainer videos breaking down complex operational bottlenecks, paired with sleek interactive ROI comparison calculators.",
     campaign: "Omni-channel strategy uniting Google Search ads on high-intent competitor keywords with LinkedIn & Meta remarketing displaying client validation.",
-    result: "Delivered 82 enterprise discovery calls with Fortune 1000 decision-makers, resulting in $3.4M in added pipeline value in the first two quarters.",
+    result: "Delivered 82 enterprise discovery calls with Fortune 1000 decision-makers, resulting in ₹28 Cr in added pipeline value in the first two quarters.",
     stats: [
-      { label: "Pipeline Added", value: "$3.4M" },
-      { label: "Cost Per Discovery Call", value: "$285" },
+      { label: "Pipeline Added", value: "₹28 Cr" },
+      { label: "Cost Per Discovery Call", value: "₹23,500" },
       { label: "CRM Routing Speed", value: "< 2 min" }
     ],
     tags: ["Google Ads", "Custom CRM", "Web Applications", "Marketing Strategy"]

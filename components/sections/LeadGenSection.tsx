@@ -5,18 +5,17 @@ import { Users, Filter, Calculator, HelpCircle } from "lucide-react";
 import { Magnetic } from "@/components/animations/Magnetic";
 
 function formatNumber(num: number): string {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return new Intl.NumberFormat("en-IN").format(num);
 }
 
 export function LeadGenSection() {
-  const [budget, setBudget] = useState<number>(5000);
+  const [budget, setBudget] = useState<number>(250000);
 
   // Dynamic calculated projections based on the illustrative ratio
-  const impressions = Math.round((budget / 12) * 1000);
-  const engagements = Math.round(impressions * 0.25);
-  const inquiries = Math.round(engagements * 0.32);
-  const qualifiedLeads = Math.round(inquiries * 0.44);
-  const estimatedCustomers = Math.max(1, Math.round(qualifiedLeads * 0.28));
+  const impressions = Math.round((budget / 220) * 1000);
+  const engagements = Math.round(impressions * 0.08);
+  const qualifiedLeads = Math.round(budget / 350);
+  const estimatedCustomers = Math.max(1, Math.round(qualifiedLeads * 0.15));
 
   const pipelineStages = [
     { count: "1,000", label: "PEOPLE SEE", desc: "Top-of-funnel targeted audience reaches the campaign.", color: "border-blue-500 text-blue-400" },
@@ -117,7 +116,7 @@ export function LeadGenSection() {
                 suppressHydrationWarning
                 className="text-xl sm:text-3xl font-black font-mono text-cyan-400 drop-shadow-[0_0_12px_#00BFFF]"
               >
-                ${formatNumber(budget)}
+                ₹{formatNumber(budget)}
               </span>
             </div>
           </div>
@@ -125,15 +124,15 @@ export function LeadGenSection() {
           {/* Interactive Range Slider */}
           <div className="my-6 sm:my-8">
             <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-              <span>$1,000 / mo</span>
+              <span>₹50,000 / mo</span>
               <span className="text-cyan-400 font-bold">Slide to adjust scale</span>
-              <span>$50,000+ / mo</span>
+              <span>₹15,00,000+ / mo</span>
             </div>
             <input
               type="range"
-              min="1000"
-              max="50000"
-              step="500"
+              min="50000"
+              max="1500000"
+              step="25000"
               value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full h-3 bg-[#07111F] rounded-lg appearance-none cursor-pointer accent-cyan-400 shadow-inner"

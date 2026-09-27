@@ -108,7 +108,7 @@ const ROW_TWO_ITEMS: SocialCard[] = [
     likes: "34.8K",
     comments: "1.1K",
     shares: "9.7K",
-    hook: "The testing hierarchy we use across $200k/mo ad spend.",
+    hook: "The testing hierarchy we use across ₹1.5 Cr/mo ad spend.",
     gradient: "from-blue-600/35 via-cyan-400/20 to-[#07111F]",
     tilt: "-rotate-1",
   },

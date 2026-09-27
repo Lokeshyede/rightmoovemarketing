@@ -14,7 +14,7 @@ export function ContactSection() {
     phone: "",
     email: "",
     businessType: "E-Commerce / Retail",
-    budgetRange: "$5,000 - $10,000 / mo",
+    budgetRange: "₹1,00,000 - ₹2,50,000 / mo",
     message: "",
   });
 
@@ -41,11 +41,11 @@ export function ContactSection() {
   ];
 
   const budgetOptions = [
-    "Under $3,000 / mo",
-    "$3,000 - $5,000 / mo",
-    "$5,000 - $10,000 / mo",
-    "$10,000 - $25,000 / mo",
-    "$25,000+ / mo",
+    "Under ₹50,000 / mo",
+    "₹50,000 - ₹1,00,000 / mo",
+    "₹1,00,000 - ₹2,50,000 / mo",
+    "₹2,50,000 - ₹5,00,000 / mo",
+    "₹5,00,000+ / mo",
   ];
 
   const businessTypes = [

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://rightmovemarketing.com/sitemap.xml",
+    sitemap: "https://rightmovemarketing.in/sitemap.xml",
   };
 }

@@ -18,6 +18,9 @@ function ServiceTiltCard({ pillar, icon: Icon }: TiltCardProps) {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
+    if (typeof window !== "undefined" && (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches)) {
+      return;
+    }
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -33,6 +36,9 @@ function ServiceTiltCard({ pillar, icon: Icon }: TiltCardProps) {
   };
 
   const handleMouseEnter = () => {
+    if (typeof window !== "undefined" && (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches)) {
+      return;
+    }
     setIsHovered(true);
   };
 
@@ -56,7 +62,7 @@ function ServiceTiltCard({ pillar, icon: Icon }: TiltCardProps) {
           : "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
         willChange: "transform",
       }}
-      className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between overflow-hidden cursor-pointer transition-colors duration-500 border ${
+      className={`relative rounded-3xl p-5 sm:p-8 lg:p-10 flex flex-col justify-between overflow-hidden cursor-pointer transition-colors duration-500 border ${
         isHovered
           ? "bg-[#0B1220]/95 border-cyan-400 shadow-[0_25px_60px_rgba(0,191,255,0.25)] border-glow-animated"
           : "bg-[#07111F]/70 border-cyan-500/15 hover:border-cyan-400/40"
@@ -169,32 +175,32 @@ export function WhatWeDoSection() {
   const icons = [Video, TrendingUp, Layers];
 
   return (
-    <section id="services" className="relative py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/10">
+    <section id="services" className="relative py-20 sm:py-28 lg:py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/10">
       {/* Background glow and subtle grid */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-4/5 h-[500px] bg-gradient-to-r from-blue-700/10 via-cyan-500/5 to-transparent blur-[140px] pointer-events-none" />
       <div className="absolute inset-0 rm-grid-bg opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             <span>The Three Engines of Growth</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-[1.05]">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
             WE CREATE.<br />
             WE ADVERTISE.<br />
             <span className="rm-text-blue-gradient">WE GROW.</span>
           </h2>
 
-          <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed">
             Everything your business needs to arrest attention, capture qualified buyer demand, and scale seamlessly with modern technology.
           </p>
         </div>
 
         {/* 3 Interactive 3D Tilt Pillar Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {CORE_PILLARS.map((pillar, idx) => (
             <ServiceTiltCard
               key={pillar.pillar}

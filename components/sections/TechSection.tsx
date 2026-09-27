@@ -18,6 +18,9 @@ function TechInteractiveCard({ service, idx, icon: Icon }: TechCardProps) {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
+    if (typeof window !== "undefined" && (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches)) {
+      return;
+    }
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -29,6 +32,13 @@ function TechInteractiveCard({ service, idx, icon: Icon }: TechCardProps) {
     });
   };
 
+  const handleMouseEnter = () => {
+    if (typeof window !== "undefined" && (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches)) {
+      return;
+    }
+    setIsHovered(true);
+  };
+
   const handleMouseLeave = () => {
     setIsHovered(false);
     setTilt({ x: 0, y: 0 });
@@ -38,7 +48,7 @@ function TechInteractiveCard({ service, idx, icon: Icon }: TechCardProps) {
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-cursor="SYSTEM"
       style={{
@@ -46,7 +56,7 @@ function TechInteractiveCard({ service, idx, icon: Icon }: TechCardProps) {
         transition: isHovered ? "transform 0.1s ease-out" : "transform 0.5s ease-out",
         willChange: "transform",
       }}
-      className={`group relative rounded-3xl p-8 bg-[#0B1220] border transition-colors duration-300 flex flex-col justify-between cursor-pointer ${
+      className={`group relative rounded-2xl sm:rounded-3xl p-5 sm:p-8 bg-[#0B1220] border transition-colors duration-300 flex flex-col justify-between cursor-pointer ${
         isHovered
           ? "border-cyan-400 shadow-[0_20px_50px_rgba(0,191,255,0.25)] border-glow-animated"
           : "border-cyan-500/15 hover:border-cyan-400/50"
@@ -54,19 +64,19 @@ function TechInteractiveCard({ service, idx, icon: Icon }: TechCardProps) {
     >
       <div>
         {/* Subtle top indicator */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-[#07111F] border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-400 group-hover:text-black group-hover:shadow-[0_0_20px_#00BFFF] transition-all duration-300">
-            <Icon className="w-6 h-6" />
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#07111F] border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-400 group-hover:text-black group-hover:shadow-[0_0_20px_#00BFFF] transition-all duration-300">
+            <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <span className="text-xs font-mono font-bold text-slate-500 group-hover:text-cyan-400 transition-colors">
             SYS-0{idx + 1}
           </span>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+        <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
           {service.title}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed font-normal">
+        <p className="text-xs sm:text-sm text-slate-400 mt-2 sm:mt-3 leading-relaxed font-normal">
           {service.shortDescription}
         </p>
 
@@ -115,21 +125,21 @@ export function TechSection() {
   };
 
   return (
-    <section id="technology" className="relative py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15">
+    <section id="technology" className="relative py-20 sm:py-28 lg:py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15">
       {/* Background radial glow */}
       <div className="absolute top-1/2 right-1/4 w-[700px] h-[500px] bg-gradient-to-l from-blue-600/10 via-cyan-500/5 to-transparent blur-[160px] pointer-events-none" />
       <div className="absolute inset-0 rm-grid-bg opacity-25 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-20">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-20">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-4 sm:mb-6">
               <Cpu className="w-3.5 h-3.5" />
               <span>Scalable Infrastructure</span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
               WHEN MARKETING<br />
               <span className="rm-text-blue-gradient">NEEDS TECHNOLOGY.</span>
             </h2>
@@ -141,7 +151,7 @@ export function TechSection() {
         </div>
 
         {/* Tech Architecture Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {techServices.map((service, idx) => {
             const Icon = iconMap[service.id] || Globe;
             return (
@@ -156,21 +166,21 @@ export function TechSection() {
         </div>
 
         {/* Technology Synergy Banner */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-blue-950/40 via-[#0B1220] to-cyan-950/30 border border-cyan-500/25 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_15px_40px_rgba(5,6,8,0.9)]">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 shrink-0">
-              <Zap className="w-6 h-6 animate-pulse" />
+        <div className="mt-10 sm:mt-12 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-950/40 via-[#0B1220] to-cyan-950/30 border border-cyan-500/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-[0_15px_40px_rgba(5,6,8,0.9)]">
+          <div className="flex items-start sm:items-center gap-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 shrink-0">
+              <Zap className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
             </div>
             <div>
-              <h4 className="text-lg font-bold text-white">Marketing Powers the Demand. Technology Powers the Scale.</h4>
+              <h4 className="text-base sm:text-lg font-bold text-white">Marketing Powers the Demand. Technology Powers the Scale.</h4>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">Never lose another customer to slow page load, lost leads, or manual administrative delay.</p>
             </div>
           </div>
 
-          <Magnetic strength={0.25} data-cursor="MOVE">
+          <Magnetic strength={0.25} data-cursor="MOVE" className="w-full sm:w-auto shrink-0">
             <a
               href="#contact"
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,191,255,0.5)] transition-all whitespace-nowrap block"
+              className="w-full sm:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,191,255,0.5)] transition-all whitespace-nowrap block text-center"
             >
               Build Scalable Tech
             </a>

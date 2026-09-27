@@ -22,6 +22,9 @@ export function Magnetic({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
+    if (typeof window !== "undefined" && (window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches)) {
+      return;
+    }
     const { clientX, clientY } = e;
     const { top, left, width, height } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);

@@ -16,7 +16,7 @@ export function CustomCursor() {
 
   useEffect(() => {
     // Only enable on desktop pointer devices
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (isTouch || prefersReducedMotion) {

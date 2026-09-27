@@ -62,16 +62,16 @@ export function StatementSection() {
         <div className="absolute inset-0 rm-grid-bg opacity-25 pointer-events-none" />
 
         {/* Top Section Tag */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-3 px-5 py-2 rounded-full bg-[#0B1220]/90 border border-cyan-500/25 backdrop-blur-md shadow-[0_0_20px_rgba(0,191,255,0.2)]">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-slate-200">
+        <div className="absolute top-6 sm:top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-3 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-[#0B1220]/90 border border-cyan-500/25 backdrop-blur-md shadow-[0_0_20px_rgba(0,191,255,0.2)] max-w-[90vw] justify-center">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-slate-200 truncate">
             The RightMove Philosophy
           </span>
         </div>
 
         {/* Center Dynamic Typography Container with Blur-to-Sharp & Word Morph */}
-        <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
-          <div className="min-h-[240px] sm:min-h-[300px] flex items-center justify-center relative w-full">
+        <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center w-full px-2 sm:px-6">
+          <div className="min-h-[200px] sm:min-h-[300px] flex items-center justify-center relative w-full">
             {STATEMENTS.map((statement, idx) => {
               const isActive = activeIdx === idx;
               const isFinal = idx === STATEMENTS.length - 1;
@@ -87,13 +87,13 @@ export function StatementSection() {
                   }`}
                 >
                   {isFinal && (
-                    <div className="mb-6 animate-pulse-subtle">
+                    <div className="mb-4 sm:mb-6 animate-pulse-subtle">
                       <RightMoveLogo variant="mark" size="md" />
                     </div>
                   )}
 
                   <h2
-                    className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.08] ${
+                    className={`text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[1.15] sm:leading-[1.08] px-1 ${
                       isFinal
                         ? "rm-text-blue-gradient drop-shadow-[0_0_40px_rgba(0,191,255,0.6)]"
                         : idx === 3
@@ -104,18 +104,18 @@ export function StatementSection() {
                     {words.map((word, wIdx) => (
                       <span
                         key={word}
-                        className="inline-block transition-all duration-500"
+                        className="inline-block transition-all duration-500 mr-1.5 sm:mr-3"
                         style={{
                           transform: isActive ? "translateY(0px)" : "translateY(20px)",
                           transitionDelay: `${wIdx * 60}ms`,
                         }}
                       >
-                        {word}&nbsp;
+                        {word}
                       </span>
                     ))}
                   </h2>
 
-                  <p className="mt-6 text-xs sm:text-sm font-mono tracking-widest text-cyan-400/80 uppercase">
+                  <p className="mt-4 sm:mt-6 text-xs sm:text-sm font-mono tracking-widest text-cyan-400/80 uppercase">
                     Stage 0{idx + 1} of 0{STATEMENTS.length}
                   </p>
                 </div>
@@ -125,23 +125,23 @@ export function StatementSection() {
         </div>
 
         {/* Bottom Scroll Progress Bar with Glowing Traveling Dot */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 w-64 max-w-full">
+        <div className="absolute bottom-6 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3 w-64 max-w-[90vw]">
           <div className="flex items-center gap-2">
             {STATEMENTS.map((_, i) => (
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   activeIdx === i
-                    ? "w-10 bg-cyan-400 shadow-[0_0_15px_#00BFFF]"
+                    ? "w-8 sm:w-10 bg-cyan-400 shadow-[0_0_15px_#00BFFF]"
                     : activeIdx > i
-                    ? "w-4 bg-blue-600"
+                    ? "w-3 sm:w-4 bg-blue-600"
                     : "w-2 bg-slate-800"
                 }`}
               />
             ))}
           </div>
 
-          <span className="text-[10px] uppercase font-mono tracking-widest text-slate-500">
+          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-widest text-slate-500">
             Scroll to progress philosophy
           </span>
         </div>

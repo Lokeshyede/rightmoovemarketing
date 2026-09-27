@@ -16,12 +16,13 @@ export function HeroCanvas() {
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
 
+    const isMobile = width < 768;
     // Scene, Camera, Renderer
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x050608, 0.0018);
 
     const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1500);
-    camera.position.z = 600;
+    camera.position.z = isMobile ? 750 : 600;
     camera.position.y = 80;
 
     const renderer = new THREE.WebGLRenderer({
@@ -30,12 +31,12 @@ export function HeroCanvas() {
       powerPreference: "high-performance",
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
     // 1. Particle Cloud (Glowing cyan & deep blue points)
-    const particleCount = prefersReducedMotion ? 250 : 900;
+    const particleCount = prefersReducedMotion ? 200 : isMobile ? 450 : 900;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -189,6 +190,7 @@ export function HeroCanvas() {
       const w = container.clientWidth || window.innerWidth;
       const h = container.clientHeight || window.innerHeight;
       camera.aspect = w / h;
+      camera.position.z = w < 768 ? 750 : 600;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };

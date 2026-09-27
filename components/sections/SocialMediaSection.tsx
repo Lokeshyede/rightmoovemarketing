@@ -140,50 +140,50 @@ export function SocialMediaSection() {
   ];
 
   return (
-    <section className="relative py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15">
+    <section className="relative py-20 sm:py-28 lg:py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-[600px] bg-gradient-to-r from-blue-700/10 via-cyan-500/5 to-transparent blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Organic Velocity & Community</span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-[1.05]">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
             YOUR SOCIAL MEDIA.<br />
             <span className="rm-text-blue-gradient">ALWAYS MOVING.</span>
           </h2>
 
-          <p className="mt-6 text-base sm:text-lg text-slate-400 leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-slate-400 leading-relaxed">
             We turn stagnant social channels into high-velocity attention machines with daily high-production short-form video, thought-leadership carousels, and proactive community growth.
           </p>
         </div>
 
         {/* 6 Capability Badges */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3 mb-10 sm:mb-16">
           {pillars.map((p) => (
             <div
               key={p.title}
-              className="p-4 rounded-2xl bg-[#0B1220]/70 border border-cyan-500/15 text-center flex flex-col items-center justify-center hover:border-cyan-400/50 hover:bg-[#0f1b33] transition-all"
+              className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#0B1220]/70 border border-cyan-500/15 text-center flex flex-col items-center justify-center hover:border-cyan-400/50 hover:bg-[#0f1b33] transition-all"
             >
-              <p className="text-xs font-bold text-white uppercase tracking-wider">{p.title}</p>
-              <p className="text-[10px] text-slate-400 mt-1 leading-snug">{p.desc}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider">{p.title}</p>
+              <p className="text-[10px] text-slate-400 mt-1 leading-snug line-clamp-2">{p.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Animated Content Wall (Dual Continuous Stream at Different Speeds) */}
-      <div className="relative w-full overflow-hidden py-4 flex flex-col gap-6">
+      <div className="relative w-full overflow-hidden py-4 flex flex-col gap-5 sm:gap-6">
         {/* Edge Gradient Shadows */}
-        <div className="absolute left-0 inset-y-0 w-24 sm:w-48 bg-gradient-to-r from-[#050608] to-transparent z-30 pointer-events-none" />
-        <div className="absolute right-0 inset-y-0 w-24 sm:w-48 bg-gradient-to-l from-[#050608] to-transparent z-30 pointer-events-none" />
+        <div className="absolute left-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-r from-[#050608] to-transparent z-30 pointer-events-none" />
+        <div className="absolute right-0 inset-y-0 w-16 sm:w-48 bg-gradient-to-l from-[#050608] to-transparent z-30 pointer-events-none" />
 
         {/* Row 1: Moves Left */}
-        <div className="animate-marquee flex gap-6 items-center">
+        <div className="animate-marquee flex gap-4 sm:gap-6 items-center">
           {[...ROW_ONE_ITEMS, ...ROW_ONE_ITEMS, ...ROW_ONE_ITEMS].map((card, idx) => {
             const cardKey = `row1-${card.id}-${idx}`;
             const isHovered = hoveredId === cardKey;
@@ -194,9 +194,9 @@ export function SocialMediaSection() {
                 onMouseEnter={() => setHoveredId(cardKey)}
                 onMouseLeave={() => setHoveredId(null)}
                 data-cursor="EXPAND"
-                className={`w-[270px] sm:w-[320px] rounded-3xl p-6 bg-[#0B1220] border transition-all duration-500 flex flex-col justify-between shrink-0 cursor-pointer ${
+                className={`w-[260px] sm:w-[320px] rounded-2xl sm:rounded-3xl p-4 sm:p-6 bg-[#0B1220] border transition-all duration-500 flex flex-col justify-between shrink-0 cursor-pointer ${
                   isHovered
-                    ? "border-cyan-400 shadow-[0_20px_50px_rgba(0,191,255,0.4)] scale-110 z-40 rotate-0 bg-[#0e1b36] -translate-y-3"
+                    ? "border-cyan-400 shadow-[0_20px_50px_rgba(0,191,255,0.4)] scale-105 sm:scale-110 z-40 rotate-0 bg-[#0e1b36] -translate-y-2 sm:-translate-y-3"
                     : `border-cyan-500/20 hover:border-cyan-400/50 ${card.tilt}`
                 }`}
               >
@@ -252,7 +252,7 @@ export function SocialMediaSection() {
         </div>
 
         {/* Row 2: Moves Right at Different Speed */}
-        <div className="animate-marquee-reverse flex gap-6 items-center">
+        <div className="animate-marquee-reverse flex gap-4 sm:gap-6 items-center">
           {[...ROW_TWO_ITEMS, ...ROW_TWO_ITEMS, ...ROW_TWO_ITEMS].map((card, idx) => {
             const cardKey = `row2-${card.id}-${idx}`;
             const isHovered = hoveredId === cardKey;
@@ -263,9 +263,9 @@ export function SocialMediaSection() {
                 onMouseEnter={() => setHoveredId(cardKey)}
                 onMouseLeave={() => setHoveredId(null)}
                 data-cursor="EXPAND"
-                className={`w-[270px] sm:w-[320px] rounded-3xl p-6 bg-[#0B1220] border transition-all duration-500 flex flex-col justify-between shrink-0 cursor-pointer ${
+                className={`w-[260px] sm:w-[320px] rounded-2xl sm:rounded-3xl p-4 sm:p-6 bg-[#0B1220] border transition-all duration-500 flex flex-col justify-between shrink-0 cursor-pointer ${
                   isHovered
-                    ? "border-cyan-400 shadow-[0_20px_50px_rgba(0,191,255,0.4)] scale-110 z-40 rotate-0 bg-[#0e1b36] -translate-y-3"
+                    ? "border-cyan-400 shadow-[0_20px_50px_rgba(0,191,255,0.4)] scale-105 sm:scale-110 z-40 rotate-0 bg-[#0e1b36] -translate-y-2 sm:-translate-y-3"
                     : `border-cyan-500/20 hover:border-cyan-400/50 ${card.tilt}`
                 }`}
               >

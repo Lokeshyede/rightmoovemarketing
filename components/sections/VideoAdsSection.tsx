@@ -131,10 +131,19 @@ export function VideoAdsSection() {
   const activeVideo = VIDEO_ITEMS[activeIdx];
 
   const handleManualScroll = (direction: "left" | "right") => {
-    if (direction === "left") {
-      setActiveIdx((prev) => Math.max(0, prev - 1));
-    } else {
-      setActiveIdx((prev) => Math.min(VIDEO_ITEMS.length - 1, prev + 1));
+    const nextIdx =
+      direction === "left"
+        ? Math.max(0, activeIdx - 1)
+        : Math.min(VIDEO_ITEMS.length - 1, activeIdx + 1);
+    setActiveIdx(nextIdx);
+
+    if (typeof window !== "undefined" && window.innerWidth < 1024 && trackRef.current?.parentElement) {
+      const firstCard = trackRef.current.children[0] as HTMLElement | undefined;
+      const cardWidth = firstCard ? firstCard.offsetWidth : 300;
+      trackRef.current.parentElement.scrollTo({
+        left: nextIdx * (cardWidth + 24),
+        behavior: "smooth",
+      });
     }
   };
 
@@ -147,15 +156,15 @@ export function VideoAdsSection() {
       {/* Background glow ambiance */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-gradient-to-r from-blue-600/10 via-cyan-500/5 to-transparent blur-[160px] pointer-events-none" />
 
-      <div className="relative z-10 w-full min-h-screen flex flex-col justify-center py-20 lg:py-0">
+      <div className="relative z-10 w-full min-h-screen flex flex-col justify-center py-16 sm:py-20 lg:py-0">
         {/* Section Header */}
-        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-10 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-4">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Cinematic Advertising Showcase</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
               WE CREATE ADS<br />
               <span className="rm-text-blue-gradient">PEOPLE WANT TO WATCH.</span>
             </h2>
@@ -171,7 +180,7 @@ export function VideoAdsSection() {
                 <button
                   onClick={() => handleManualScroll("left")}
                   disabled={activeIdx === 0}
-                  className="w-10 h-10 rounded-full bg-[#0B1220] border border-cyan-500/25 flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400 disabled:opacity-30 disabled:pointer-events-none transition-all"
+                  className="w-10 h-10 rounded-full bg-[#0B1220] border border-cyan-500/25 flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
                   aria-label="Previous Showcase"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -181,7 +190,7 @@ export function VideoAdsSection() {
                 <button
                   onClick={() => handleManualScroll("right")}
                   disabled={activeIdx === VIDEO_ITEMS.length - 1}
-                  className="w-10 h-10 rounded-full bg-[#0B1220] border border-cyan-500/25 flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400 disabled:opacity-30 disabled:pointer-events-none transition-all"
+                  className="w-10 h-10 rounded-full bg-[#0B1220] border border-cyan-500/25 flex items-center justify-center text-slate-300 hover:text-white hover:border-cyan-400 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
                   aria-label="Next Showcase"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -192,10 +201,10 @@ export function VideoAdsSection() {
         </div>
 
         {/* GSAP Horizontal Track (Desktop) / Horizontal Snapping Stream (Mobile) */}
-        <div className="w-full overflow-x-auto lg:overflow-visible no-scrollbar px-4 sm:px-6 lg:px-8">
+        <div className="w-full overflow-x-auto lg:overflow-visible no-scrollbar overscroll-x-contain px-4 sm:px-6 lg:px-8">
           <div
             ref={trackRef}
-            className="flex gap-6 sm:gap-8 items-center w-max py-4"
+            className="flex gap-4 sm:gap-6 lg:gap-8 items-center w-max py-4"
           >
             {VIDEO_ITEMS.map((item, idx) => {
               const isCentered = activeIdx === idx;
@@ -208,7 +217,7 @@ export function VideoAdsSection() {
                     setIsPlaying(true);
                   }}
                   data-cursor="PLAY"
-                  className={`group relative rounded-3xl overflow-hidden border-2 transition-all duration-500 cursor-pointer shrink-0 w-[300px] sm:w-[480px] lg:w-[620px] aspect-[16/10] flex flex-col justify-between p-6 sm:p-8 ${
+                  className={`group relative rounded-3xl overflow-hidden border-2 transition-all duration-500 cursor-pointer shrink-0 w-[calc(100vw-2.5rem)] max-w-[340px] sm:max-w-none sm:w-[480px] lg:w-[620px] aspect-[16/10] flex flex-col justify-between p-4 sm:p-6 lg:p-8 ${
                     isCentered
                       ? "border-cyan-400 shadow-[0_0_50px_rgba(0,191,255,0.4)] scale-100 rotate-0 bg-[#0B1220]"
                       : "border-cyan-500/20 hover:border-cyan-400/50 scale-95 -rotate-1 opacity-75 hover:opacity-100 bg-[#07111F]"
@@ -222,11 +231,11 @@ export function VideoAdsSection() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-50 group-hover:opacity-75 transition-opacity`} />
 
                   {/* Simulated Live Audio Equalizer Bars */}
-                  <div className="absolute bottom-6 left-6 flex items-end gap-1.5 h-10 pointer-events-none z-10">
+                  <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-1.5 h-8 sm:h-10 pointer-events-none z-10">
                     {[35, 70, 50, 95, 60, 30, 85, 100, 65, 45].map((h, i) => (
                       <div
                         key={i}
-                        className="w-1.5 bg-cyan-400/80 rounded-full animate-pulse"
+                        className="w-1 sm:w-1.5 bg-cyan-400/80 rounded-full animate-pulse"
                         style={{
                           height: `${isCentered ? h : h * 0.35}%`,
                           animationDuration: `${0.4 + (i % 4) * 0.15}s`,
@@ -237,10 +246,10 @@ export function VideoAdsSection() {
 
                   {/* Top Metadata Badges */}
                   <div className="relative z-10 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-black/70 border border-cyan-400/30 text-[10px] sm:text-xs font-mono font-bold text-cyan-300 backdrop-blur-md">
+                    <span className="px-2.5 sm:px-3 py-1 rounded-full bg-black/70 border border-cyan-400/30 text-[10px] sm:text-xs font-mono font-bold text-cyan-300 backdrop-blur-md">
                       {item.category}
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-blue-600/40 text-[10px] sm:text-xs font-mono text-white backdrop-blur-md">
+                    <span className="px-2.5 sm:px-3 py-1 rounded-full bg-blue-600/40 text-[10px] sm:text-xs font-mono text-white backdrop-blur-md">
                       {item.resolution}
                     </span>
                   </div>
@@ -248,32 +257,32 @@ export function VideoAdsSection() {
                   {/* Center Interactive Play/Pause Button Icon */}
                   <div className="relative z-10 flex flex-col items-center justify-center my-auto">
                     <div
-                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      className={`w-14 h-14 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-300 ${
                         isCentered
                           ? "bg-cyan-400 text-black shadow-[0_0_35px_rgba(0,191,255,0.7)] scale-110"
                           : "bg-white/10 text-white backdrop-blur-md group-hover:scale-105"
                       }`}
                     >
                       {isCentered && isPlaying ? (
-                        <Pause className="w-7 h-7 sm:w-8 sm:h-8 fill-current" />
+                        <Pause className="w-6 h-6 sm:w-8 sm:h-8 fill-current" />
                       ) : (
-                        <Play className="w-7 h-7 sm:w-8 sm:h-8 ml-1 fill-current" />
+                        <Play className="w-6 h-6 sm:w-8 sm:h-8 ml-1 fill-current" />
                       )}
                     </div>
                   </div>
 
                   {/* Bottom Info Bar */}
-                  <div className="relative z-10 pt-4 border-t border-white/10 flex items-end justify-between gap-4">
-                    <div>
+                  <div className="relative z-10 pt-3 sm:pt-4 border-t border-white/10 flex items-end justify-between gap-3 sm:gap-4">
+                    <div className="min-w-0 flex-1">
                       <span className="text-[10px] sm:text-xs font-mono text-cyan-400 font-bold uppercase">
                         {item.badge}
                       </span>
-                      <h3 className="text-base sm:text-xl font-bold text-white mt-0.5 line-clamp-1">
+                      <h3 className="text-sm sm:text-xl font-bold text-white mt-0.5 truncate">
                         {item.title}
                       </h3>
                     </div>
 
-                    <div className="px-3 py-1 rounded-xl bg-black/80 border border-cyan-400/30 text-xs font-mono font-bold text-cyan-300 whitespace-nowrap shadow-[0_0_15px_rgba(0,191,255,0.3)]">
+                    <div className="px-2.5 sm:px-3 py-1 rounded-xl bg-black/80 border border-cyan-400/30 text-[10px] sm:text-xs font-mono font-bold text-cyan-300 whitespace-nowrap shadow-[0_0_15px_rgba(0,191,255,0.3)] shrink-0">
                       {item.metric}
                     </div>
                   </div>

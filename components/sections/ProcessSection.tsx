@@ -121,21 +121,21 @@ export function ProcessSection() {
     <section
       id="process"
       ref={sectionRef}
-      className="relative py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#050608] overflow-hidden border-t border-cyan-500/15"
     >
       {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/3 w-[650px] h-[500px] bg-gradient-to-r from-blue-600/10 via-cyan-500/5 to-transparent blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-[650px] max-w-[100vw] h-[500px] bg-gradient-to-r from-blue-600/10 via-cyan-500/5 to-transparent blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-20">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-20">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-xs uppercase font-mono tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0B1220] border border-cyan-500/20 text-cyan-400 text-[11px] sm:text-xs uppercase font-mono tracking-widest mb-4 sm:mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Rigorous Growth Framework</span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[1.05]">
               HOW WE MOVE<br />
               <span className="rm-text-blue-gradient">YOUR BUSINESS.</span>
             </h2>
@@ -147,7 +147,7 @@ export function ProcessSection() {
         </div>
 
         {/* 1. Horizontal Animated Timeline (01 CREATE → 02 ADVERTISE → 03 GENERATE LEADS → 04 CONVERT → 05 GROW) */}
-        <div className="relative mb-16 px-4">
+        <div className="relative mb-10 sm:mb-16 px-1 sm:px-4">
           {/* Base Background Track Line */}
           <div className="h-1.5 w-full bg-slate-800/80 rounded-full relative overflow-hidden">
             {/* Animated Blue Progress Line Travelling with Scroll */}
@@ -160,7 +160,7 @@ export function ProcessSection() {
           </div>
 
           {/* Stepper Node Pins */}
-          <div className="relative -top-4 flex items-center justify-between">
+          <div className="relative -top-3.5 sm:-top-4 flex items-center justify-between">
             {TIMELINE_STEPS.map((step, idx) => {
               const isPassed = idx <= activeStep;
               const isCurrent = idx === activeStep;
@@ -171,18 +171,19 @@ export function ProcessSection() {
                   <button
                     onClick={() => setActiveStep(idx)}
                     data-cursor="PHASE"
-                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
+                    aria-label={`Phase ${step.step}: ${step.title}`}
+                    className={`w-7 h-7 xs:w-8 xs:h-8 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
                       isCurrent
-                        ? "bg-cyan-400 text-black shadow-[0_0_25px_#00BFFF] scale-125 border-2 border-white"
+                        ? "bg-cyan-400 text-black shadow-[0_0_25px_#00BFFF] scale-110 sm:scale-125 border-2 border-white"
                         : isPassed
                         ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(11,92,255,0.4)]"
                         : "bg-[#0B1220] border border-slate-700 text-slate-400 hover:border-cyan-400"
                     }`}
                   >
-                    <StepIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <StepIcon className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                   </button>
 
-                  <div className="mt-3 text-center hidden sm:block">
+                  <div className="mt-2 sm:mt-3 text-center hidden sm:block">
                     <p className={`text-[10px] font-mono font-bold tracking-widest ${
                       isCurrent ? "text-cyan-400" : isPassed ? "text-white" : "text-slate-500"
                     }`}>
@@ -201,32 +202,32 @@ export function ProcessSection() {
         </div>
 
         {/* 2. Active Step Feature Showcase Deck */}
-        <div className="rounded-3xl border-2 border-cyan-500/30 bg-[#0B1220]/95 p-8 sm:p-12 shadow-[0_25px_60px_rgba(5,6,8,0.95)] backdrop-blur-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="rounded-2xl sm:rounded-3xl border-2 border-cyan-500/30 bg-[#0B1220]/95 p-4 sm:p-8 lg:p-12 shadow-[0_25px_60px_rgba(5,6,8,0.95)] backdrop-blur-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
             
             {/* Left Column: Phase Details */}
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 shadow-[0_0_25px_rgba(0,191,255,0.4)]">
-                  <CurrentIcon className="w-8 h-8" />
+            <div className="flex flex-col gap-5 sm:gap-6">
+              <div className="flex items-center gap-3.5 sm:gap-4">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 shadow-[0_0_25px_rgba(0,191,255,0.4)] shrink-0">
+                  <CurrentIcon className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
                     Phase {current.step} — {current.subtitle}
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mt-1">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white uppercase tracking-tight mt-0.5 sm:mt-1">
                     {current.title}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-base text-slate-300 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
                 {current.description}
               </p>
 
               {/* Milestone Checklist */}
               <div className="pt-4 border-t border-white/10">
-                <p className="text-xs uppercase font-mono tracking-widest text-slate-400 font-bold mb-3">
+                <p className="text-[11px] sm:text-xs uppercase font-mono tracking-widest text-slate-400 font-bold mb-3">
                   Key Sprint Deliverables:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -240,17 +241,17 @@ export function ProcessSection() {
               </div>
 
               {/* Output Deliverable Badge */}
-              <div className="p-4 rounded-2xl bg-[#07111F] border border-cyan-500/25 flex items-center justify-between">
-                <div>
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#07111F] border border-cyan-500/25 flex items-center justify-between gap-3">
+                <div className="min-w-0">
                   <p className="text-[10px] font-mono uppercase text-slate-400">Guaranteed Milestone Deliverable</p>
-                  <p className="text-sm font-bold text-cyan-300 mt-0.5">{current.output}</p>
+                  <p className="text-xs sm:text-sm font-bold text-cyan-300 mt-0.5 truncate">{current.output}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-cyan-400" />
+                <ArrowRight className="w-4 h-4 text-cyan-400 shrink-0" />
               </div>
             </div>
 
             {/* Right Column: Interactive Phase Switcher Grid */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2.5 sm:gap-3">
               {TIMELINE_STEPS.map((s, i) => {
                 const StepIcon = s.icon;
                 const isSelected = activeStep === i;
@@ -260,25 +261,25 @@ export function ProcessSection() {
                     key={s.step}
                     onClick={() => setActiveStep(i)}
                     data-cursor="PHASE"
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                    className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
                       isSelected
-                        ? "bg-[#0e1d38] border-cyan-400 shadow-[0_0_25px_rgba(0,191,255,0.3)] scale-[1.02]"
+                        ? "bg-[#0e1d38] border-cyan-400 shadow-[0_0_25px_rgba(0,191,255,0.3)] scale-[1.01] sm:scale-[1.02]"
                         : "bg-[#07111F]/60 border-white/5 hover:border-cyan-500/30 opacity-70 hover:opacity-100"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-mono font-bold ${
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center text-xs font-mono font-bold shrink-0 ${
                         isSelected ? "bg-cyan-400 text-black shadow-[0_0_10px_#00BFFF]" : "bg-[#0B1220] text-slate-400"
                       }`}>
                         {s.step}
                       </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-white uppercase">{s.title}</h4>
-                        <p className="text-[11px] text-slate-400">{s.subtitle}</p>
+                      <div className="min-w-0">
+                        <h4 className="text-xs font-bold text-white uppercase truncate">{s.title}</h4>
+                        <p className="text-[11px] text-slate-400 truncate">{s.subtitle}</p>
                       </div>
                     </div>
 
-                    <StepIcon className={`w-4 h-4 ${isSelected ? "text-cyan-400" : "text-slate-600"}`} />
+                    <StepIcon className={`w-4 h-4 shrink-0 ${isSelected ? "text-cyan-400" : "text-slate-600"}`} />
                   </div>
                 );
               })}

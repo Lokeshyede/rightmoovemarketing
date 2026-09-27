@@ -69,9 +69,8 @@ export function HeroSection({ onStartProject, onExploreWork }: HeroSectionProps)
   ];
 
   // Headline words for staggered split-text reveal
-  const headlineWordsRow1 = ["WE", "MAKE", "YOUR", "BUSINESS"];
-  const headlineWordsRow2 = ["IMPOSSIBLE", "TO", "IGNORE."];
-
+  const headlineWordsRow1 = ["DIGITAL", "MARKETING", "THAT"];
+  const headlineWordsRow2 = ["DRIVES", "REAL", "GROWTH."];
   const isHeadlineActive = introPhase === "headline" || introPhase === "sweep" || introPhase === "complete";
   const isSweepActive = introPhase === "sweep" || introPhase === "complete";
   const isCardsActive = introPhase === "complete";
@@ -156,7 +155,7 @@ export function HeroSection({ onStartProject, onExploreWork }: HeroSectionProps)
 
         {/* Word-by-Word Reveal Headline with 3D Perspective */}
         <div className="w-full max-w-4xl mx-auto my-3 sm:my-4 px-2 perspective-1000">
-          <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight sm:leading-[1.05] uppercase">
+          <h1 className="text-[clamp(1.65rem,6.2vw,4.5rem)] font-black tracking-tight text-white leading-[1.08] sm:leading-[1.05] uppercase">
             {/* Row 1 Words */}
             <span className="inline-flex flex-wrap justify-center gap-x-2 sm:gap-x-4">
               {headlineWordsRow1.map((word, i) => (
@@ -222,17 +221,17 @@ export function HeroSection({ onStartProject, onExploreWork }: HeroSectionProps)
             isHeadlineActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          We create high-yield ad creative, engineer predictive customer acquisition funnels, and build the scalable software systems that move businesses forward.
+          RightMove Marketing helps businesses grow with performance marketing, Meta Ads, Google Ads, lead generation, social media marketing, website development and digital advertising.
         </p>
 
         {/* Cinematic Magnetic CTAs */}
         <div
-          className={`mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full sm:w-auto px-2 sm:px-0 transition-all duration-700 delay-700 ${
+          className={`mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 w-full max-w-sm sm:max-w-none px-2 sm:px-0 transition-all duration-700 delay-700 ${
             isHeadlineActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
           {/* Primary Magnetic CTA */}
-          <Magnetic strength={0.25} data-cursor="MOVE">
+          <Magnetic strength={0.25} data-cursor="MOVE" className="w-full sm:w-auto">
             <button
               onClick={
                 onStartProject ||
@@ -252,7 +251,7 @@ export function HeroSection({ onStartProject, onExploreWork }: HeroSectionProps)
           </Magnetic>
 
           {/* Secondary Magnetic CTA */}
-          <Magnetic strength={0.2} data-cursor="EXPLORE">
+          <Magnetic strength={0.2} data-cursor="EXPLORE" className="w-full sm:w-auto">
             <button
               onClick={
                 onExploreWork ||
@@ -270,7 +269,7 @@ export function HeroSection({ onStartProject, onExploreWork }: HeroSectionProps)
 
         {/* The RightMove Visual Arrow Conversion Formula Strip */}
         <div
-          className={`mt-8 sm:mt-12 inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#07111F]/80 border border-cyan-500/20 backdrop-blur-md text-[9px] sm:text-[11px] font-mono tracking-wider text-slate-400 shadow-[0_0_20px_rgba(11,92,255,0.2)] max-w-full transition-all duration-700 delay-1000 ${
+          className={`mt-8 sm:mt-12 inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 px-3 sm:px-6 py-2 sm:py-2.5 rounded-2xl sm:rounded-full bg-[#07111F]/80 border border-cyan-500/20 backdrop-blur-md text-[9px] sm:text-[11px] font-mono tracking-wider text-slate-400 shadow-[0_0_20px_rgba(11,92,255,0.2)] max-w-full transition-all duration-700 delay-1000 ${
             isHeadlineActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >

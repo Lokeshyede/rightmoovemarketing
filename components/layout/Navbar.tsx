@@ -19,10 +19,32 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
       }
     };
 
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: "Services", href: "#services" },
@@ -65,7 +87,7 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
           <Magnetic strength={0.2} data-cursor="RIGHTMOVE">
             <Link
               href="/"
-              className="group relative flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02]"
+              className="group relative flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02] max-w-[170px] sm:max-w-none"
             >
               <RightMoveLogo variant="horizontal" size="md" priority />
             </Link>
@@ -105,7 +127,7 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-[#0B1220] border border-cyan-500/25 text-slate-200 hover:text-cyan-400 transition-colors cursor-pointer"
+            className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] rounded-xl bg-[#0B1220] border border-cyan-500/25 text-slate-200 hover:text-cyan-400 transition-colors cursor-pointer flex items-center justify-center shrink-0"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6 text-cyan-400" /> : <Menu className="w-6 h-6" />}
@@ -113,9 +135,9 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
         </div>
       </header>
 
-      {/* Fullscreen Mobile Menu Drawer with Cinematic Curtain Reveal */}
+      {/* Fullscreen Mobile Menu Drawer with Cinematic Curtain Reveal & Safe Scroll */}
       <div
-        className={`fixed inset-0 z-30 bg-[#050608]/98 backdrop-blur-3xl transition-all duration-500 lg:hidden flex flex-col justify-between px-6 pt-28 pb-10 ${
+        className={`fixed inset-0 z-30 bg-[#050608]/98 backdrop-blur-3xl transition-all duration-500 lg:hidden flex flex-col justify-between px-5 sm:px-6 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4.5rem))] pb-[max(2rem,env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-8"
@@ -124,19 +146,19 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
         {/* Background Ambient Glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
 
-        <div className="flex flex-col gap-6 relative z-10">
+        <div className="flex flex-col gap-5 relative z-10">
           <p className="text-xs uppercase tracking-widest text-cyan-400 font-bold">
             Navigation Index
           </p>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1.5">
             {navLinks.map((link, idx) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl font-bold tracking-tight text-slate-100 hover:text-cyan-300 transition-colors flex items-center justify-between py-2 border-b border-white/10"
+                className="text-xl sm:text-2xl font-bold tracking-tight text-slate-100 hover:text-cyan-300 transition-colors flex items-center justify-between py-2 border-b border-white/10"
                 style={{
-                  transitionDelay: mobileMenuOpen ? `${idx * 45}ms` : "0ms",
+                  transitionDelay: mobileMenuOpen ? `${idx * 40}ms` : "0ms",
                   transform: mobileMenuOpen ? "translateX(0)" : "translateX(-15px)",
                 }}
               >
@@ -147,10 +169,10 @@ export function Navbar({ onOpenContact }: { onOpenContact?: () => void }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 pt-6 border-t border-cyan-500/20 relative z-10">
+        <div className="flex flex-col gap-3 pt-6 border-t border-cyan-500/20 relative z-10 mt-6 shrink-0">
           <button
             onClick={handleCtaClick}
-            className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,191,255,0.5)] cursor-pointer"
+            className="w-full py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,191,255,0.5)] cursor-pointer"
           >
             <span>Start a Project</span>
             <ArrowUpRight className="w-4 h-4" />

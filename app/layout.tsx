@@ -12,54 +12,91 @@ const jakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  title:
+    "RightMove Marketing | Digital Marketing & Performance Marketing Agency",
 
-
-  title: "RightMove — Performance Marketing, Advertising & Digital Growth",
   description:
-    "RightMove helps businesses grow through performance marketing, advertising, social media, lead generation and digital technology. Smart Moves. Real Results.",
+    "RightMove Marketing helps businesses grow with performance marketing, Meta Ads, Google Ads, lead generation, social media marketing, website development and digital advertising.",
+
   keywords: [
+    "RightMove Marketing",
     "RightMove",
+    "Digital Marketing Agency",
+    "Performance Marketing Agency",
     "Performance Marketing",
-    "Ad Video Creation",
     "Meta Ads Agency",
+    "Google Ads Agency",
     "Google Ads Management",
+    "Meta Ads",
     "Lead Generation",
     "Social Media Marketing",
-    "Growth Partner",
-    "High Conversion Websites",
+    "Digital Advertising",
+    "Website Development",
+    "Ad Video Creation",
     "CRM Automation",
   ],
-  authors: [{ name: "RightMove Performance Marketing" }],
-  creator: "RightMove",
-  publisher: "RightMove",
-  verification: {
-  google: "DP4mXJSpxEaZZHe2oKQHwyWr8PPUBZZmN",
-    },
+
+  authors: [{ name: "RightMove Marketing" }],
+  creator: "RightMove Marketing",
+  publisher: "RightMove Marketing",
+
   metadataBase: new URL("https://rightmovemarketing.in"),
+
+  alternates: {
+    canonical: "https://rightmovemarketing.in/",
+  },
+
+  verification: {
+    google: "DP4mXJSpxEaZZHe2oKQHwyWr8PPUBZZmN",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
-    title: "RightMove — Performance Marketing, Advertising & Digital Growth",
+    title:
+      "RightMove Marketing | Digital Marketing & Performance Marketing Agency",
+
     description:
-      "RightMove helps businesses grow through performance marketing, advertising, social media, lead generation and digital technology.",
-    url: "https://rightmovemarketing.in",
-    siteName: "RightMove",
+      "Grow your business with Meta Ads, Google Ads, lead generation, social media marketing, website development and performance marketing.",
+
+    url: "https://rightmovemarketing.in/",
+    siteName: "RightMove Marketing",
+
     images: [
       {
         url: "/brand/logo-full-dark.png",
         width: 1200,
         height: 630,
-        alt: "RightMove Performance Marketing & Strategy",
+        alt: "RightMove Marketing",
       },
     ],
-    locale: "en_US",
+
+    locale: "en_IN",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "RightMove — Performance Marketing, Advertising & Digital Growth",
+
+    title:
+      "RightMove Marketing | Digital Marketing & Performance Marketing Agency",
+
     description:
-      "We help businesses get noticed, generate leads and grow through creative, advertising, strategy and technology.",
+      "Performance marketing, Meta Ads, Google Ads, lead generation, social media marketing and digital advertising.",
+
     images: ["/brand/logo-full-dark.png"],
   },
+
   icons: {
     icon: "/brand/logo-app-icon.png",
     shortcut: "/brand/logo-mark-transparent.png",
@@ -74,40 +111,46 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MarketingAgency",
-    name: "RightMove Performance Marketing & Strategy",
+    "@type": "Organization",
+
+    name: "RightMove Marketing",
     alternateName: "RightMove",
-    url: "https://rightmovemarketing.in",
+
+    url: "https://rightmovemarketing.in/",
+
     logo: "https://rightmovemarketing.in/brand/logo-full-dark.png",
+
     description:
-      "Modern performance marketing and digital growth company specializing in ad video creation, Meta and Google campaigns, lead generation, and scalable technology.",
-    slogan: "Smart Moves. Real Results.",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "US",
-    },
+      "RightMove Marketing provides performance marketing, Meta Ads, Google Ads, lead generation, social media marketing, website development and digital advertising services.",
+
     knowsAbout: [
-      "Advertisement Video Creation",
-      "Social Media Management",
-      "Social Media Content Creation",
+      "Digital Marketing",
+      "Performance Marketing",
       "Meta Ads",
       "Google Ads",
       "Lead Generation",
-      "Performance Marketing",
-      "Websites",
-      "CRM Systems",
-      "Automation",
+      "Social Media Marketing",
+      "Digital Advertising",
+      "Website Development",
+      "Video Advertising",
+      "CRM Automation",
     ],
   };
 
   return (
-    <html lang="en" className={`${jakartaSans.variable} font-sans dark scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${jakartaSans.variable} font-sans dark scroll-smooth`}
+    >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
         />
       </head>
+
       <body className="min-h-screen bg-[#050608] text-white selection:bg-[#0B5CFF] selection:text-white antialiased overflow-x-hidden">
         <SmoothScroll>
           <AtmosphericBackground />

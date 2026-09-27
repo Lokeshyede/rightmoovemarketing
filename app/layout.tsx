@@ -12,6 +12,8 @@ const jakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+
+
   title: "RightMove — Performance Marketing, Advertising & Digital Growth",
   description:
     "RightMove helps businesses grow through performance marketing, advertising, social media, lead generation and digital technology. Smart Moves. Real Results.",
@@ -30,12 +32,15 @@ export const metadata: Metadata = {
   authors: [{ name: "RightMove Performance Marketing" }],
   creator: "RightMove",
   publisher: "RightMove",
-  metadataBase: new URL("https://rightmovemarketing.com"),
+  verification: {
+  google: "DP4mXJSpxEaZZHe2oKQHwyWr8PPUBZZmN",
+    },
+  metadataBase: new URL("https://rightmovemarketing.in"),
   openGraph: {
     title: "RightMove — Performance Marketing, Advertising & Digital Growth",
     description:
       "RightMove helps businesses grow through performance marketing, advertising, social media, lead generation and digital technology.",
-    url: "https://rightmovemarketing.com",
+    url: "https://rightmovemarketing.in",
     siteName: "RightMove",
     images: [
       {
@@ -72,8 +77,8 @@ export default function RootLayout({
     "@type": "MarketingAgency",
     name: "RightMove Performance Marketing & Strategy",
     alternateName: "RightMove",
-    url: "https://rightmovemarketing.com",
-    logo: "https://rightmovemarketing.com/brand/logo-full-dark.png",
+    url: "https://rightmovemarketing.in",
+    logo: "https://rightmovemarketing.in/brand/logo-full-dark.png",
     description:
       "Modern performance marketing and digital growth company specializing in ad video creation, Meta and Google campaigns, lead generation, and scalable technology.",
     slogan: "Smart Moves. Real Results.",

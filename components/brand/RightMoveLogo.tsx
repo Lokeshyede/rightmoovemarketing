@@ -34,9 +34,8 @@ export function RightMoveLogo({
           alt="RightMove Official Mark"
           width={dim.markSize}
           height={dim.markSize}
-          style={{ width: "auto", height: "auto" }}
           priority={priority}
-          className="object-contain filter drop-shadow-[0_0_16px_rgba(0,191,255,0.4)] transition-transform duration-300 hover:scale-105"
+          className="w-auto h-auto object-contain filter drop-shadow-[0_0_16px_rgba(0,191,255,0.4)] transition-transform duration-300 hover:scale-105"
         />
       </div>
     );
@@ -48,11 +47,10 @@ export function RightMoveLogo({
         <Image
           src="/brand/logo-app-icon.png"
           alt="RightMove App Badge"
-          width={dim.markSize * 1.2}
-          height={dim.markSize * 1.2}
-          style={{ width: "auto", height: "auto" }}
+          width={Math.round(dim.markSize * 1.2)}
+          height={Math.round(dim.markSize * 1.2)}
           priority={priority}
-          className="object-cover"
+          className="w-auto h-auto object-cover"
         />
       </div>
     );
@@ -64,11 +62,10 @@ export function RightMoveLogo({
         <Image
           src="/brand/logo-full-transparent.png"
           alt="RightMove Performance Marketing & Strategy"
-          width={dim.width * 1.4}
-          height={dim.height * 1.4}
-          style={{ width: "auto", height: "auto" }}
+          width={Math.round(dim.width * 1.4)}
+          height={Math.round(dim.height * 1.4)}
           priority={priority}
-          className="object-contain filter drop-shadow-[0_0_24px_rgba(0,191,255,0.3)]"
+          className="w-auto h-auto object-contain filter drop-shadow-[0_0_24px_rgba(0,191,255,0.3)]"
         />
       </div>
     );
@@ -82,9 +79,8 @@ export function RightMoveLogo({
         alt="RightMove - Performance Marketing & Strategy"
         width={dim.width}
         height={dim.height}
-        style={{ width: "auto", height: "auto" }}
         priority={priority}
-        className="object-contain filter drop-shadow-[0_0_20px_rgba(11,92,255,0.3)] transition-transform duration-300 hover:brightness-110"
+        className="w-auto h-auto object-contain filter drop-shadow-[0_0_20px_rgba(11,92,255,0.3)] transition-transform duration-300 hover:brightness-110"
       />
     </div>
   );
